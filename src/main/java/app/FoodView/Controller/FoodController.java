@@ -12,6 +12,7 @@ import java.util.Optional;
 // FoodController.java
 @RestController
 @RequestMapping("/api/food")
+@CrossOrigin(origins = "http://localhost:3000") // Apply CORS configuration to the entire controller
 public class FoodController {
     @Autowired
     private FoodItemRepository foodItemRepository;

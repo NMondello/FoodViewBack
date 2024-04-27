@@ -1,5 +1,9 @@
 package app.FoodView;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 @Entity
 public class Review {
     @Id
@@ -10,16 +14,20 @@ public class Review {
     private int rating;
     private String comment;
 
-    public Object getRating() {
+    public int getRating() {
+        return this.rating;
     }
 
-    public void setRating(Object rating) {
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
-    public Object getComment() {
+    public String getComment() {
+        return this.comment;
     }
 
-    public void setComment(Object comment) {
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     // Getters and setters

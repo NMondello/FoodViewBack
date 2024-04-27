@@ -12,6 +12,7 @@ import java.util.Optional;
 // ReviewController.java
 @RestController
 @RequestMapping("/api/review")
+@CrossOrigin(origins = "http://localhost:3000") // Apply CORS configuration to the entire controller
 public class ReviewController {
     @Autowired
     private ReviewRepository reviewRepository;
