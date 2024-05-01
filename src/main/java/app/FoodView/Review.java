@@ -1,19 +1,33 @@
 package app.FoodView;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "food_item_id")
     private Long foodItemId;
-    private String username;
     private int rating;
     private String comment;
+    public Review() {
+        // Default constructor is needed for JPA
+    }
 
+    // Constructor with parameters
+    public Review(Long foodItemId, int rating, String comment) {
+        this.foodItemId = foodItemId;
+        this.rating = rating;
+        this.comment = comment;
+    }
+
+    public long getFoodItemId() {
+        return this.foodItemId;
+    }
+    public void setFoodItemId(Long foodItemId) {
+        this.foodItemId = foodItemId;
+    }
     public int getRating() {
         return this.rating;
     }

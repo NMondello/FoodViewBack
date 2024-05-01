@@ -3,6 +3,7 @@ package app.FoodView.Controller;
 import app.FoodView.Review;
 import app.FoodView.ReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,16 @@ public class ReviewController {
 
     @PostMapping("/")
     public ResponseEntity<Review> createReview(@RequestBody Review review) {
-        Review savedReview = reviewRepository.save(review);
-        return ResponseEntity.ok(savedReview);
+        try{
+            Review savedReview = reviewRepository.save(review);
+            return ResponseEntity.ok(savedReview);
+        }catch (Exception e) {
+            // Log the error for debugging purposes
+            e.printStackTrace();
+            // Return a 500 Internal Server Error with a descriptive error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+
     }
 
     @PutMapping("/{id}")

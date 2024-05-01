@@ -3,6 +3,7 @@ package app.FoodView.Controller;
 import app.FoodView.FoodItem;
 import app.FoodView.FoodItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,8 +31,15 @@ public class FoodController {
 
     @PostMapping("/")
     public ResponseEntity<FoodItem> createFoodItem(@RequestBody FoodItem foodItem) {
-        FoodItem savedFoodItem = foodItemRepository.save(foodItem);
-        return ResponseEntity.ok(savedFoodItem);
+        try {
+            FoodItem savedFoodItem = foodItemRepository.save(foodItem);
+            return ResponseEntity.ok(savedFoodItem);
+        } catch (Exception e) {
+            // Log the error for debugging purposes
+            e.printStackTrace();
+            // Return a 500 Internal Server Error with a descriptive error message
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 
     @PutMapping("/{id}")

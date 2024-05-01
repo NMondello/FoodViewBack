@@ -1,9 +1,7 @@
 package app.FoodView;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 @Entity
 public class FoodItem {
     @Id
@@ -11,6 +9,7 @@ public class FoodItem {
     private Long id;
     private String name;
     private String description;
+    @Column(name = "image_url")
     private String imageUrl;
     public FoodItem() {
         // Default constructor is needed for JPA
